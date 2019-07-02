@@ -1,4 +1,4 @@
-package com.adamhala007.cleverlancemobiletestapp;
+package com.adamhala007.cleverlancemobiletestapp.utils;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
@@ -7,8 +7,11 @@ import java.security.NoSuchAlgorithmException;
 
 public class SHA1 {
 
-    public static String encrypt(String text) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-        MessageDigest md = MessageDigest.getInstance("SHA-1");
+    public static String encrypt(String text) throws NoSuchAlgorithmException {
+        if (text == null)
+            return "";
+
+        MessageDigest md = MessageDigest.getInstance(Constants.SHA_1);
         byte[] textBytes = text.getBytes(StandardCharsets.ISO_8859_1);
         md.update(textBytes, 0, textBytes.length);
         byte[] sha1hash = md.digest();

@@ -1,7 +1,10 @@
-package com.adamhala007.cleverlancemobiletestapp;
+package com.adamhala007.cleverlancemobiletestapp.utils.request;
 
 import android.util.Log;
-import android.widget.Toast;
+
+import com.adamhala007.cleverlancemobiletestapp.models.User;
+import com.adamhala007.cleverlancemobiletestapp.utils.Constants;
+import com.adamhala007.cleverlancemobiletestapp.utils.SHA1;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,14 +15,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Iterator;
 
@@ -43,7 +43,6 @@ public class RequestHandler {
            return createResponse(conn);
 
         }else{
-            Log.e("REQUEST", "Request failed!");
             throw new Exception(Constants.ERROR_REQUEST);
         }
     }
@@ -54,7 +53,7 @@ public class RequestHandler {
         return postDataParams;
     }
 
-    private static void setupRequest(HttpURLConnection connection) throws ProtocolException, UnsupportedEncodingException, NoSuchAlgorithmException {
+    private static void setupRequest(HttpURLConnection connection) throws ProtocolException, NoSuchAlgorithmException {
         connection.setReadTimeout(Constants.READ_TIMEOUT);
         connection.setConnectTimeout(Constants.CONNECT_TIMEOUT);
         connection.setRequestProperty (Constants.AUTHORIZATION, SHA1.encrypt(user.getPassword()));
@@ -104,9 +103,9 @@ public class RequestHandler {
             else
                 result.append("&");
 
-            result.append(URLEncoder.encode(key, "UTF-8"));
+            result.append(URLEncoder.encode(key, Constants.ENCODING_UTF8));
             result.append("=");
-            result.append(URLEncoder.encode(value.toString(), "UTF-8"));
+            result.append(URLEncoder.encode(value.toString(), Constants.ENCODING_UTF8));
         }
         return result.toString();
     }

@@ -1,15 +1,13 @@
-package com.adamhala007.cleverlancemobiletestapp;
+package com.adamhala007.cleverlancemobiletestapp.utils.request;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.widget.Toast;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.adamhala007.cleverlancemobiletestapp.models.User;
+import com.adamhala007.cleverlancemobiletestapp.utils.Constants;
 
 public class RequestAsync extends AsyncTask<String,String,String> {
 
@@ -27,14 +25,13 @@ public class RequestAsync extends AsyncTask<String,String,String> {
             return RequestHandler.sendPost(Constants.SERVICE_URL, user);
         }
         catch(Exception e){
-            return "Exception: " + e.getMessage();
+            return Constants.EXCEPTION + e.getMessage();
         }
     }
 
     @Override
     protected void onPostExecute(String s) {
         if(s!=null){
-            Log.e("image", s);
             sendResultToUI(s);
         }
     }

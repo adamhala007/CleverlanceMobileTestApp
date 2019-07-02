@@ -1,4 +1,4 @@
-package com.adamhala007.cleverlancemobiletestapp;
+package com.adamhala007.cleverlancemobiletestapp.models;
 
 public class User {
 

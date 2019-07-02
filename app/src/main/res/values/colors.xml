@@ -9,5 +9,6 @@
     <color name="colorCustomLight">#ffb04c</color>
     <color name="colorCustomText">#000000</color>
     <color name="colorCustomBackground">#FFF3E0</color>
+    <color name="colorCustomBackground2">#6AFFF3E0</color>
 
 </resources>
